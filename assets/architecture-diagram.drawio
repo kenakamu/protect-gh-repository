@@ -1,0 +1,50 @@
+<mxfile host="65bd71144e">
+    <diagram name="Architecture Diagram" id="ukhysw3NcxWbA1dT-ebQ">
+        <mxGraphModel dx="733" dy="463" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="80" background="#FFFFFF" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="9" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;fillStyle=solid;strokeColor=none;fontColor=#000000;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="36" y="2" width="753" height="232" as="geometry"/>
+                </mxCell>
+                <mxCell id="RQlce5zik157XPyGxkxe-10" value="&lt;font color=&quot;#000000&quot;&gt;GitHub Organization&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;fillStyle=solid;fillColor=none;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="30" width="160" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;font color=&quot;#000000&quot;&gt;Webhook&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#FFFFFF;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="70" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="RQlce5zik157XPyGxkxe-15" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#000000;" parent="1" source="5" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="630" y="165"/>
+                        </Array>
+                        <mxPoint x="630" y="160" as="sourcePoint"/>
+                        <mxPoint x="380" y="210" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RQlce5zik157XPyGxkxe-16" value="&lt;font style=&quot;background-color: rgb(255, 255, 255);&quot; color=&quot;#000000&quot;&gt;3. Create Ruleset&lt;br&gt;4.Create an issue&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="RQlce5zik157XPyGxkxe-15" vertex="1" connectable="0">
+                    <mxGeometry x="-0.3054" y="-2" relative="1" as="geometry">
+                        <mxPoint x="-76" y="27" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="&lt;font color=&quot;#000000&quot;&gt;Azure Function&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=none;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="55" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font color=&quot;#000000&quot;&gt;REST API Endpoint&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#FFFFFF;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="150" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;font style=&quot;background-color: rgb(255, 255, 255);&quot; color=&quot;#000000&quot;&gt;2. Repository Created Event&lt;/font&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="3" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RQlce5zik157XPyGxkxe-13" value="&lt;font color=&quot;#000000&quot;&gt;1. Create a repository&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=0;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="90" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="RQlce5zik157XPyGxkxe-14" value="&lt;font color=&quot;#000000&quot;&gt;Repository&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;fillStyle=solid;fillColor=none;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="135" y="140" width="90" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

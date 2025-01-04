@@ -1,0 +1,14 @@
+﻿global using ghwebhook.Models;
+global using GitHubJwt;
+global using Microsoft.Azure.Functions.Worker;
+global using Microsoft.Azure.Functions.Worker.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+global using Octokit;
+global using System.Text.Json.Serialization;
+global using ghwebhook;
+global using Octokit.Webhooks;
+global using Octokit.Webhooks.AzureFunctions;
+global using Octokit.Webhooks.Events;
+global using Octokit.Webhooks.Events.Repository;
