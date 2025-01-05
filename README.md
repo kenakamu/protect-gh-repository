@@ -90,7 +90,6 @@ The CI pipeline includes the following steps:
 - Restore dependencies
 - Build the project
 - Run tests
-- Report unit test results
 
 ### CI Triggers
 

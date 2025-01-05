@@ -28,13 +28,4 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run tests
-      run: dotnet test --no-build --verbosity normal
-
-    - name: Report unit test results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: TestResults
-
-    - name: Fix action failure
-      run: dotnet --version
+      run: dotnet test --no-build 
