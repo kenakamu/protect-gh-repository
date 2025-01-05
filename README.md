@@ -78,6 +78,30 @@ See [Use ngrok for local debug](UseNgrok.md) for the detail steps.
 
 Once you satisfy with the solution, you can deploy the solution the application to Azure Functions.
 
+## CI Setup
+
+This project uses GitHub Actions for Continuous Integration (CI). The CI pipeline is defined in the `.github/workflows/ci.yml` file.
+
+### CI Pipeline
+
+The CI pipeline includes the following steps:
+- Check out the code
+- Set up .NET
+- Restore dependencies
+- Build the project
+- Run tests
+- Report unit test results
+
+### CI Triggers
+
+The CI pipeline is triggered on the following events:
+- Push to the `main` branch
+- Pull request to the `main` branch
+
+### Viewing CI Status
+
+You can view the CI status on the GitHub repository page. The status of the latest CI run is displayed in the "Actions" tab.
+
 ## Considerations
 
 ### Security Considerations
