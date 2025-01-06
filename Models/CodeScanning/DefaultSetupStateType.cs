@@ -8,7 +8,7 @@ public enum DefaultSetupStateType
     /// <summary>
     /// Configured
     /// </summary>
-    [JsonPropertyName("not-configured")]
+    [JsonPropertyName("configured")]
     Configured,
 
     /// <summary>
