@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram name="Architecture Diagram" id="ukhysw3NcxWbA1dT-ebQ">
-        <mxGraphModel dx="733" dy="463" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="80" background="#FFFFFF" math="0" shadow="0">
+        <mxGraphModel dx="648" dy="463" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="80" background="#FFFFFF" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="9" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;fillStyle=solid;strokeColor=none;fontColor=#000000;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="9" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;fillStyle=solid;strokeColor=none;fontColor=#000000;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="36" y="2" width="753" height="232" as="geometry"/>
                 </mxCell>
                 <mxCell id="RQlce5zik157XPyGxkxe-10" value="&lt;font color=&quot;#000000&quot;&gt;GitHub Organization&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;fillStyle=solid;fillColor=none;strokeColor=#000000;" parent="1" vertex="1">
@@ -22,9 +22,9 @@
                         <mxPoint x="380" y="210" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="RQlce5zik157XPyGxkxe-16" value="&lt;font style=&quot;background-color: rgb(255, 255, 255);&quot; color=&quot;#000000&quot;&gt;3. Create Ruleset&lt;br&gt;4.Create an issue&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="RQlce5zik157XPyGxkxe-15" vertex="1" connectable="0">
+                <mxCell id="RQlce5zik157XPyGxkxe-16" value="&lt;font style=&quot;background-color: rgb(255, 255, 255);&quot; color=&quot;#000000&quot;&gt;3. Create Ruleset&lt;br&gt;4. Create Code Scanning&lt;br&gt;5. Enable Secret Scanning&lt;br&gt;6.Create an issue&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="RQlce5zik157XPyGxkxe-15" vertex="1" connectable="0">
                     <mxGeometry x="-0.3054" y="-2" relative="1" as="geometry">
-                        <mxPoint x="-76" y="27" as="offset"/>
+                        <mxPoint x="-76" y="37" as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="5" value="&lt;font color=&quot;#000000&quot;&gt;Azure Function&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=none;strokeColor=#000000;" parent="1" vertex="1">

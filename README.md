@@ -10,6 +10,8 @@ We use C#/.NET 9 and Azure Functions.
 
 - Listen to GitHub organization webhook repository events.
 - Create a ruleset to protect the main branch of new repositories.
+- Enable Code Scanning with default setup
+- Enable Secret Scanning to protect secret push
 - Notify a user that the main branch has been protected by creating an issue and mention the user.
 
 ![Architecture](./assets/architecture-diagram.png)
@@ -18,7 +20,7 @@ We use C#/.NET 9 and Azure Functions.
 
 To run the application, you need:
 
-- GitHub account and a [GitHub organization](https://docs.github.com/en/organizations).
+- GitHub account and a [GitHub organization](https://docs.github.com/en/organizations) with appropriate licenses[^1]
 - [GitHub App](https://docs.github.com/en/developers/apps/building-github-apps/creating-a-github-app) for authorizing the use of GitHub REST API.
 - [GitHub Organization Webook](https://docs.github.com/en/webhooks)
 - [Azure Subscription](https://portal.azure.com) to host the application on Azure Function.
@@ -26,6 +28,8 @@ To run the application, you need:
 - [Azure Functions related tools](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference)
 
 We use Azure Functions [isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide) to run .NET 9 application.
+
+[^1]: See [Compare Fetures](https://github.com/pricing#compare-features) to see which license you need. 
 
 ### GitHub App
 
@@ -42,7 +46,16 @@ See [Create WebHook](./CreateWebHook.md) for detail steps.
 The Azure Functions app consumes the GitHub REST API to create a ruleset and an issue. See following links for more detail.
 
 - [Create a RuleSet](https://docs.github.com/en/rest/repos/rules?apiVersion=2022-11-28#create-a-repository-ruleset) for applying branch protection rules.
+- [Update a code scanning default setup configuration](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28#update-a-code-scanning-default-setup-configuration) for enabling code scanning.
+- [Update a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#update-a-repository) for enabling secret scanning.
 - [Create an Issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue) for creating issues to notify users.
+
+### GitHub Advanced Security
+
+[GitHub Advanced Security](https://docs.github.com/en/enterprise-cloud@latest/get-started/learning-about-github/about-github-advanced-security) provides useful secrity related features. In this repo,we use following features to protect branch.
+
+- [Code scanning with CodeQL](https://docs.github.com/en/enterprise-cloud@latest/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql)
+- [Secret scanning](https://docs.github.com/en/enterprise-cloud@latest/code-security/secret-scanning/introduction/about-secret-scanning)
 
 ## Getting Started
 
