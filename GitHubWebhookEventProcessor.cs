@@ -71,6 +71,33 @@ public class GitHubWebhookEventProcessor(GitHubClient gitHubClient, ILogger<GitH
                     "application/json",
                     "application/json");
 
+                DefaultSetup defaultSetup = new()
+                {
+                    State = DefaultSetupStateType.Configured 
+                };
+                await gitHubClient.Connection.Patch<DefaultSetup>(
+                    new Uri($"repositories/{repositoryId}/code-scanning/default-setup", UriKind.Relative),
+                    defaultSetup,
+                    "application/json");
+
+                // Enable Secret Scanning 
+                Repository updated = await gitHubClient.Repository.Edit(
+                    repositoryId, 
+                    new() 
+                    {
+                        SecurityAndAnalysis = new()
+                        {
+                             SecretScanning = new()
+                             {
+                                  Status = Status.Enabled
+                             },
+                             SecretScanningPushProtection = new()
+                             {
+                                  Status = Status.Enabled
+                             }
+                        }
+                    });
+
                 // Create an issue to notify user.
                 NewIssue issue = new("Ruleset has been created")
                 {
