@@ -124,8 +124,8 @@ We are storing the pem file direclty in the project and copies it to Azure Funct
 
 As webhook won't resend the event in any case, we need to make sure to store the event and handle them appripriately. The current architecutre receives the event directly in the Azure Function, that may cause the issue when:
 
-- the Azure function no up and running
-- the Azure function failed to process the request
+- The Azure function no up and running
+- The Azure function failed to process the request
 
 To avoid the loss of the event, we can utilize services such as Azure Event Grid and store the event securely to the queueing system or database so that we can retry handling the event in case of failure.
 
