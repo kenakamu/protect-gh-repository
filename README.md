@@ -46,6 +46,8 @@ See [Create WebHook](./CreateWebHook.md) for detail steps.
 The Azure Functions app consumes the GitHub REST API to create a ruleset and an issue. See following links for more detail.
 
 - [Create a RuleSet](https://docs.github.com/en/rest/repos/rules?apiVersion=2022-11-28#create-a-repository-ruleset) for applying branch protection rules.
+- [Update a code scanning default setup configuration](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28#update-a-code-scanning-default-setup-configuration) for enabling code scanning.
+- [Update a repository](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#update-a-repository) for enabling secret scanning.
 - [Create an Issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue) for creating issues to notify users.
 
 ### GitHub Advanced Security
