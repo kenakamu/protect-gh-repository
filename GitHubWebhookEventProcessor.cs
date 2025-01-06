@@ -35,75 +35,119 @@ public class GitHubWebhookEventProcessor(GitHubClient gitHubClient, ILogger<GitH
                 string repositoryName = repositoryEvent.Repository.Name;
                 long repositoryId = repositoryEvent.Repository.Id;
 
-                // Create a ruleset for the repository to protect main (default) branch(es).
-                RuleSet ruleSet = new()
+                bool ruleSetCreated = false;
+                bool defaultSetupConfigured = false;
+                bool secretScanningEnabled = false;
+
+                try
                 {
-                    Owner = organizationName,
-                    Repo = repositoryName,
-                    Name = "MyRuleSet",
-                    Target = TargetType.branch,
-                    Enforcement = RuleEnforcement.active,
-                    Conditions = new()
+                    // Create a ruleset for the repository to protect main (default) branch(es).
+                    RuleSet ruleSet = new()
                     {
-                        RefName = new()
+                        Owner = organizationName,
+                        Repo = repositoryName,
+                        Name = "MyRuleSet",
+                        Target = TargetType.branch,
+                        Enforcement = RuleEnforcement.active,
+                        Conditions = new()
                         {
-                            Include = new() { "~DEFAULT_BRANCH" }
-                        }
-                    },
-                    Rules = new()
-                    {
-                        new DeletionRule(),
-                        new PullRequestRule()
-                        {
-                            Parameters = new()
+                            RefName = new()
                             {
-                                RequiredApprovingReviewCount=2,
-                                RequiredReviewThreadResolution = true,
-                                AllowedMergeMethods = new() { "squash", "merge" }
+                                Include = new() { "~DEFAULT_BRANCH" }
+                            }
+                        },
+                        Rules = new()
+                        {
+                            new DeletionRule(),
+                            new PullRequestRule()
+                            {
+                                Parameters = new()
+                                {
+                                    RequiredApprovingReviewCount=2,
+                                    RequiredReviewThreadResolution = true,
+                                    AllowedMergeMethods = new() { "squash", "merge" }
+                                }
                             }
                         }
-                    }
-                };
+                    };
 
-                await gitHubClient.Connection.Post<RuleSet>(
-                    new Uri($"repositories/{repositoryId}/rulesets", UriKind.Relative),
-                    ruleSet,
-                    "application/json",
-                    "application/json");
+                    await gitHubClient.Connection.Post<RuleSet>(
+                        new Uri($"repositories/{repositoryId}/rulesets", UriKind.Relative),
+                        ruleSet,
+                        "application/json",
+                        "application/json");
 
-                DefaultSetup defaultSetup = new()
+                    ruleSetCreated = true;
+                }
+                catch (Exception ex)
                 {
-                    State = DefaultSetupStateType.Configured 
-                };
-                await gitHubClient.Connection.Patch<DefaultSetup>(
-                    new Uri($"repositories/{repositoryId}/code-scanning/default-setup", UriKind.Relative),
-                    defaultSetup,
-                    "application/json");
+                    logger.LogError(ex, "Failed to create ruleset.");
+                }
 
-                // Enable Secret Scanning 
-                Repository updated = await gitHubClient.Repository.Edit(
-                    repositoryId, 
-                    new() 
+                try
+                {
+                    DefaultSetup defaultSetup = new()
                     {
-                        SecurityAndAnalysis = new()
-                        {
-                             SecretScanning = new()
-                             {
-                                  Status = Status.Enabled
-                             },
-                             SecretScanningPushProtection = new()
-                             {
-                                  Status = Status.Enabled
-                             }
-                        }
-                    });
+                        State = DefaultSetupStateType.Configured 
+                    };
+                    await gitHubClient.Connection.Patch<DefaultSetup>(
+                        new Uri($"repositories/{repositoryId}/code-scanning/default-setup", UriKind.Relative),
+                        defaultSetup,
+                        "application/json");
 
-                // Create an issue to notify user.
-                NewIssue issue = new("Ruleset has been created")
+                    defaultSetupConfigured = true;
+                }
+                catch (Exception ex)
                 {
-                    Body = $"Hi @{gitHubUserName}, Ruleset has been created."
-                };
-                await gitHubClient.Issue.Create(repositoryId, issue);
+                    logger.LogError(ex, "Failed to configure default setup.");
+                }
+
+                try
+                {
+                    // Enable Secret Scanning 
+                    Repository updated = await gitHubClient.Repository.Edit(
+                        repositoryId, 
+                        new() 
+                        {
+                            SecurityAndAnalysis = new()
+                            {
+                                SecretScanning = new()
+                                {
+                                    Status = Status.Enabled
+                                },
+                                SecretScanningPushProtection = new()
+                                {
+                                    Status = Status.Enabled
+                                }
+                            }
+                        });
+
+                    secretScanningEnabled = true;
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Failed to enable secret scanning.");
+                }
+
+                try
+                {
+                    // Create an issue to notify user.
+                    StringBuilder issueBody = new();
+                    issueBody.AppendLine($"Hi @{gitHubUserName},\n");
+                    issueBody.AppendLine(ruleSetCreated ? "Ruleset has been created successfully.\n" : "Failed to create ruleset.\n");
+                    issueBody.AppendLine(defaultSetupConfigured ? "Default setup has been configured successfully.\n" : "Failed to configure default setup.\n");
+                    issueBody.AppendLine(secretScanningEnabled ? "Secret scanning has been enabled successfully.\n" : "Failed to enable secret scanning.\n");
+
+                    NewIssue issue = new("Repository setup status")
+                    {
+                        Body = issueBody.ToString()
+                    };
+                    await gitHubClient.Issue.Create(repositoryId, issue);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Failed to create issue.");
+                }
                 break;
             default:
                 logger.LogInformation("Some other repository event");
