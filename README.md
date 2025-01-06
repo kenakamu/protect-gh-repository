@@ -133,10 +133,10 @@ See [Event Grid message delivery and retry](https://learn.microsoft.com/en-us/az
 
 ### Library Considerations
 
-** Octokit **
+**Octokit**
 We use [Octokit.net](https://github.com/octokit/octokit.net) to consume GitHub REST API. However, the package doesn't support `RuleSet` feature yet, thus we defines the [RuleSet](./Models/RuleSet/RuleSet.cs) model in the repo. Once the package supports the `RuleSet`, we shall upgrade the package and remove our own implementations.
 
-** Octokit.Webhooks.AzureFunctions **
+**Octokit.Webhooks.AzureFunctions**
 We use [Octokit.Webhooks](https://github.com/octokit/webhooks.net) for Azure Function to simplify the application. If you prefer convert the application into Web API instead, refer to the GitHub repo and update the code.
 
 ## Contributing
