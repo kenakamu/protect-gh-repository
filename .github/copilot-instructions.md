@@ -20,3 +20,7 @@ When a developer asks to generate a class based on the actual JSON, follow the r
 - Set default value based on C# 12 syntax.
 - Use List<T> rather than array type.
 - Follow class rules above for other things.
+
+# Coding rule
+
+- Do NOT use var, but use strong type. Then omit the type after new keyword. 

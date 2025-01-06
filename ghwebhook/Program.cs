@@ -36,7 +36,7 @@ new HostBuilder()
     .ConfigureServices(collection =>
     {
         collection.AddSingleton<WebhookEventProcessor, GitHubWebhookEventProcessor>();
-        collection.AddSingleton<GitHubClient>(installationClient);
+        collection.AddSingleton<IGitHubClient>(installationClient);
     })
     .ConfigureGitHubWebhooks()
     .ConfigureFunctionsWebApplication()
