@@ -116,20 +116,40 @@ You can view the CI status on the GitHub repository page. The status of the late
 
 ## Considerations
 
+### RuleSet store
+
+At this moment, the ruleset definition is hardcoded. However, there are several other choices.
+
+**Use template repository**
+You can create a template repsitory, set all the required settings, then use the ruleset definition from there.
+- By get ruleset definition via REST API
+- By export ruleset
+
+**Use JSON document in database**
+You can save the desired JSON data in datastore, then the application can retrieve it.
+
 ### Security Considerations
 
+#### PEM file
+
 We are storing the pem file direclty in the project and copies it to Azure Functions, which is not ideal from security point of view. Please consider using [Azure KeyVault Certificates](https://learn.microsoft.com/en-us/azure/key-vault/certificates/) and use [Managed Identity](https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references?tabs=azure-cli) to retrive the pem file for Azure Functions.
+
+#### Networking
+
+Depending on requirements, consider using VNET integration, firewall, etc. For accessing other resource, you can also use managed identities.
 
 ### Architecture Considerations
 
 As webhook won't resend the event in any case, we need to make sure to store the event and handle them appripriately. The current architecutre receives the event directly in the Azure Function, that may cause the issue when:
 
-- The Azure function no up and running
+- The Azure function not up and running (even with Always on)
 - The Azure function failed to process the request
 
 To avoid the loss of the event, we can utilize services such as Azure Event Grid and store the event securely to the queueing system or database so that we can retry handling the event in case of failure.
 
 See [Event Grid message delivery and retry](https://learn.microsoft.com/en-us/azure/event-grid/delivery-and-retry) and [Azure Functions triggers and bindings concept](https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings) to see which cloud services the Azure Function support natively as a trigger.
+
+If the repository protection doesn't require realtime, you can also consider using timer job, but depending on how frequent the repo is created, many run cycle would be waste.
 
 ### Library Considerations
 
