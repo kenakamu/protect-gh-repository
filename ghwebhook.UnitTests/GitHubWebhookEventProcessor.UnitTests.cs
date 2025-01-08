@@ -113,7 +113,9 @@ public class GitHubWebhookEventProcessorUnitTests
                 (r.Rules[1] as PullRequestRule)!.Parameters.RequiredApprovingReviewCount == 2 &&
                 (r.Rules[1] as PullRequestRule)!.Parameters.RequiredReviewThreadResolution == true &&
                 (r.Rules[1] as PullRequestRule)!.Parameters.AllowedMergeMethods.Contains("squash") &&
-                (r.Rules[1] as PullRequestRule)!.Parameters.AllowedMergeMethods.Contains("merge")),
+                (r.Rules[1] as PullRequestRule)!.Parameters.AllowedMergeMethods.Contains("merge") &&
+                r.Rules[2] is NonFastForwardRule &&
+                r.Rules.Count == 3),
             "application/json",
             "application/json",
             It.IsAny<IDictionary<string, string>>(),
