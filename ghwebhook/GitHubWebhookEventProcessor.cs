@@ -83,7 +83,8 @@ public class GitHubWebhookEventProcessor(IGitHubClient gitHubClient, ILogger<Git
                                     RequiredReviewThreadResolution = true,
                                     AllowedMergeMethods = new() { "squash", "merge" }
                                 }
-                            }
+                            },
+                            new NonFastForwardRule()
                         }
             };
 
